@@ -29,14 +29,10 @@ public class Ruudukko {
     }
     
     
-    
     //Yksittäisiin ruutuihin liittyvät metodit
     
     private boolean sallittu(int x, int y){
-        if(x<0 || x>leveys-1 || y<0 || y>korkeus-1){
-            return false;
-        }
-        return true;
+        return x>=0 && x<leveys && y>=0 && y<korkeus;
     }
     
     public boolean onkoNakyva(int x, int y){
@@ -88,7 +84,7 @@ public class Ruudukko {
         this.ruudukko[x][y].merkitse(m);
     }
     
-    public void laskeViereisetMiinat(int x, int y){
+    private void laskeViereisetMiinat(int x, int y){
         if(!sallittu(x, y)){
             return;
         }
@@ -110,5 +106,15 @@ public class Ruudukko {
         }
         
         this.ruudukko[x][y].asetaViereisetMiinat(miinat);
+    }
+    
+    public void laskeViereisetMiinat(){
+        for(int i=0; i<this.korkeus; i++){
+            for(int j=0; j<this.leveys; j++){
+                if(!this.ruudukko[i][j].onkoMiina()){
+                    this.laskeViereisetMiinat(i, j);
+                }
+            }
+        }
     }
 }

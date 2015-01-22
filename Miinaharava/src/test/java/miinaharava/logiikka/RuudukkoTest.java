@@ -1,10 +1,6 @@
 
 package miinaharava.logiikka;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -46,7 +42,7 @@ public class RuudukkoTest {
         Ruudukko ruudukko = new Ruudukko(10, 10);
         
         ruudukko.asetaMiina(0, 1);
-        ruudukko.laskeViereisetMiinat(0, 0);
+        ruudukko.laskeViereisetMiinat();
         assertTrue(ruudukko.getViereisetMiinat(0, 0) == 1);
     }
     
@@ -56,7 +52,7 @@ public class RuudukkoTest {
         
         ruudukko.asetaMiina(0, 1);
         ruudukko.asetaMiina(1, 0);
-        ruudukko.laskeViereisetMiinat(0, 0);
+        ruudukko.laskeViereisetMiinat();
         assertTrue(ruudukko.getViereisetMiinat(0, 0) == 2);
     }
     
@@ -72,7 +68,9 @@ public class RuudukkoTest {
         ruudukko.asetaMiina(3, 2);
         ruudukko.asetaMiina(3, 3);
         ruudukko.asetaMiina(3, 4);
-        ruudukko.laskeViereisetMiinat(2, 3);
+        ruudukko.laskeViereisetMiinat();
+        assertTrue(ruudukko.getViereisetMiinat(0, 0) == 0);
         assertTrue(ruudukko.getViereisetMiinat(2, 3) == 8);
+        assertTrue(ruudukko.getViereisetMiinat(1, 1) == 2);
     }
 }
