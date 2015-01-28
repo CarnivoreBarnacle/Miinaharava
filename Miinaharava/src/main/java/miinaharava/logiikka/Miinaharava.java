@@ -8,7 +8,7 @@ public class Miinaharava {
     private int pisteet;
     
     public Miinaharava(int korkeus, int leveys, int miinoja){
-        if(miinoja > korkeus*leveys){
+        if(miinoja > (korkeus*leveys)-10){
             miinoja = 0;
         }
         

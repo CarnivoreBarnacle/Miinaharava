@@ -70,12 +70,6 @@ public class Ruudukko {
         this.ruudukko[x][y].asetaMiina();
     }
     
-    public void asetaNakyva(int x, int y){
-        if(!sallittu(x, y)){
-            return;
-        }
-        this.ruudukko[x][y].asetaNakyva();
-    }
     
     public void merkitse(int x, int y, boolean m){
         if(!sallittu(x, y)){
@@ -113,6 +107,39 @@ public class Ruudukko {
             for(int j=0; j<this.leveys; j++){
                 if(!this.ruudukko[i][j].onkoMiina()){
                     this.laskeViereisetMiinat(i, j);
+                }
+            }
+        }
+    }
+    
+    public void asetaNakyva(int x, int y){
+        if(!sallittu(x, y)){
+            return;
+        }
+        this.ruudukko[x][y].asetaNakyva();
+    }
+    
+    public void asetaNakyvaJaKetjureaktio(int x, int y){
+        if(!sallittu(x, y)){
+            return;
+        }
+        
+        asetaNakyva(x, y);
+        
+        if(this.ruudukko[x][y].getViereisetMiinat() != 0){
+            return;
+        }
+        
+        for(int i=x-1; i<=x+1; i++){
+            if(i<0 || i>this.korkeus-1){
+                continue;
+            }
+            for(int j=y-1; j<=y+1; j++){
+                if(j<0 || j>this.leveys-1){
+                    continue;
+                }
+                if(!this.ruudukko[i][j].onkoNakyva()){
+                    asetaNakyvaJaKetjureaktio(i, j);
                 }
             }
         }

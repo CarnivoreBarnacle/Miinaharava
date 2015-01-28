@@ -73,4 +73,15 @@ public class RuudukkoTest {
         assertTrue(ruudukko.getViereisetMiinat(2, 3) == 8);
         assertTrue(ruudukko.getViereisetMiinat(1, 1) == 2);
     }
+    
+    @Test
+    public void nakyvaKetjureaktio1(){
+        Ruudukko ruudukko = new Ruudukko(10, 10);
+        
+        ruudukko.asetaNakyvaJaKetjureaktio(0, 0);
+        assertTrue(ruudukko.onkoNakyva(0, 0));
+        assertTrue(ruudukko.onkoNakyva(0, 9));
+        assertTrue(ruudukko.onkoNakyva(9, 0));
+        assertTrue(ruudukko.onkoNakyva(9, 9));
+    }
 }
