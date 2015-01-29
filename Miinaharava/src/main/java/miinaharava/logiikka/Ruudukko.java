@@ -105,9 +105,7 @@ public class Ruudukko {
     public void laskeViereisetMiinat(){
         for(int i=0; i<this.korkeus; i++){
             for(int j=0; j<this.leveys; j++){
-                if(!this.ruudukko[i][j].onkoMiina()){
-                    this.laskeViereisetMiinat(i, j);
-                }
+                this.laskeViereisetMiinat(i, j);
             }
         }
     }
