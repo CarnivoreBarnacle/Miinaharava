@@ -5,3 +5,4 @@
 22.01. - 2h Ohjelmoinnin jatkaminen ja testien aloitus
 28.01. - 1h Ohjelmointi jatkuu; ruudun näkyväksi asettamiseen liittyvä ketjureaktio ja sen testaaminen, käyttöliittymä
 29.01. - 1h Käyttöliittymän ohjelmointi jatkuu
+05.02. - 3h Käyttöliittymää...
