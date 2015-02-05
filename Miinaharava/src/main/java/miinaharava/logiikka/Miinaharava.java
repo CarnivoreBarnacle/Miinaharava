@@ -2,6 +2,10 @@ package miinaharava.logiikka;
 
 import java.util.Random;
 
+/*
+ * Luokka sisältää yleisen pelilogiikan
+*/
+
 public class Miinaharava {
     private Ruudukko ruudukko;
     private int miinoja;

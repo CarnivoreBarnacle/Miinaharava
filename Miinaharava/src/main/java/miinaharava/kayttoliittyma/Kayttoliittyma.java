@@ -2,11 +2,15 @@
 package miinaharava.kayttoliittyma;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 import miinaharava.logiikka.Miinaharava;
 
 public class Kayttoliittyma extends JFrame{
     private Miinaharava miinaharava;
+
     
     public Kayttoliittyma(Miinaharava m){
         this.miinaharava = m;
@@ -14,11 +18,23 @@ public class Kayttoliittyma extends JFrame{
         valmisteleKayttoliityma();
     }
     
-    private void valmisteleKayttoliityma(){
-            
+    private void valmisteleKayttoliityma(){             
         Container pane = getContentPane();
         pane.setBackground(Color.LIGHT_GRAY);
         
+                   
+        luoRuudukko(pane);
+               
+        pack();
+        
+        setTitle("Miinaharava");
+        setSize(this.miinaharava.getRuudukko().getKorkeus()*20, this.miinaharava.getRuudukko().getLeveys()*20);
+        setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    
+    private void luoRuudukko(Container pane){
         GridLayout ruudukko = new GridLayout(this.miinaharava.getRuudukko().getKorkeus(), this.miinaharava.getRuudukko().getLeveys());
         pane.setLayout(ruudukko);
         
@@ -27,25 +43,21 @@ public class Kayttoliittyma extends JFrame{
                 JTextArea a = kirjoitaRuutu(i, j);
                 pane.add(a);
             }
-        }
-                
-        pack();
-        
-        setTitle("Miinaharava");
-        setSize(this.miinaharava.getRuudukko().getKorkeus()*20, this.miinaharava.getRuudukko().getLeveys()*20);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        }        
     }
     
     private JTextArea kirjoitaRuutu(int x, int y){
         JTextArea a = new JTextArea();
         a.setEditable(false);
         
-        /*Piilotettu ruutu
+        //Piilotettu ruutu
         if(!this.miinaharava.getRuudukko().onkoNakyva(x, y)){
             a.setBackground(Color.DARK_GRAY);
             a.setBorder(BorderFactory.createLineBorder(Color.black));
+
             return a;
-        }*/
+        }
+        
         
         a.setBackground(Color.LIGHT_GRAY);
         a.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -60,8 +72,9 @@ public class Kayttoliittyma extends JFrame{
                 a.setText("" + this.miinaharava.getRuudukko().getViereisetMiinat(x, y));
             }
         }
-                
+        
+        
+        
         return a;
-    }
-    
+    }    
 }

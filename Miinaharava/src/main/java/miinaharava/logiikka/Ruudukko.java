@@ -1,5 +1,10 @@
 package miinaharava.logiikka;
 
+/*
+ * Luokka sisältää ruuduista koostuvan taulukon, logiikka sen toiminnasta (esim. ruudun viereisten miinojen laskeminen) ja yksittäisten ruutujen
+ * muokkaamiseen soveltuvia metodeja.
+*/
+
 public class Ruudukko {
     private final int korkeus;
     private final int leveys;
@@ -141,5 +146,9 @@ public class Ruudukko {
                 }
             }
         }
+    }
+    
+    public Ruutu getRuutu(int x, int y){
+        return this.ruudukko[x][y];
     }
 }

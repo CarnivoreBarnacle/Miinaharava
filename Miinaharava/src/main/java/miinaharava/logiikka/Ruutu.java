@@ -1,47 +1,52 @@
 package miinaharava.logiikka;
 
-class Ruutu {
+/*
+ * Luokka sisältää yksittäisen ruudun tilan (esim. näkyvyys, onko siinä miina), sekä sen viereisten miinojen määrän.
+*/
+
+
+public class Ruutu {
     private boolean nakyva;
     private boolean miina;
     private boolean merkitty;
     private int viereisetMiinat;
     
-    Ruutu(){
+    public Ruutu(){
         this.nakyva = false;
         this.miina = false;
         this.merkitty = false;
         this.viereisetMiinat = 0;
     }
     
-    void asetaNakyva(){
+    public void asetaNakyva(){
         this.nakyva = true;
     }
     
-    void asetaMiina(){
+    public void asetaMiina(){
         this.miina = true;
     }
     
-    void merkitse(boolean m){
+    public void merkitse(boolean m){
         this.merkitty = m;
     }
     
-    void asetaViereisetMiinat(int maara){
+    public void asetaViereisetMiinat(int maara){
         this.viereisetMiinat = maara;
     }
     
-    boolean onkoNakyva(){
+    public boolean onkoNakyva(){
         return this.nakyva;
     }
     
-    boolean onkoMiina(){
+    public boolean onkoMiina(){
         return this.miina;
     }
     
-    boolean onkoMerkitty(){
+    public boolean onkoMerkitty(){
         return this.merkitty;
     }
     
-    int getViereisetMiinat(){
+    public int getViereisetMiinat(){
         return this.viereisetMiinat;
     }
 }
