@@ -22,7 +22,10 @@ public class Miinaharava {
         this.arvoMiinat();
         this.ruudukko.laskeViereisetMiinat();
     }
-    
+       
+    /*
+    * Arpoo miinoja-muuttujan verran miinoja ruudukkoon
+    */
     private void arvoMiinat(){
         Random r = new Random();
         for(int i=0; i<this.miinoja; i++){

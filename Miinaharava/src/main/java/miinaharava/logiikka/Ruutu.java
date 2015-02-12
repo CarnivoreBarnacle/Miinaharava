@@ -2,6 +2,7 @@ package miinaharava.logiikka;
 
 /*
  * Luokka sisältää yksittäisen ruudun tilan (esim. näkyvyys, onko siinä miina), sekä sen viereisten miinojen määrän.
+ * Metodit yksinkertaisia get/set metodeja.
 */
 
 
@@ -17,6 +18,7 @@ public class Ruutu {
         this.merkitty = false;
         this.viereisetMiinat = 0;
     }
+    
     
     public void asetaNakyva(){
         this.nakyva = true;

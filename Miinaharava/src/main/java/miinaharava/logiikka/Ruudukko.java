@@ -16,7 +16,10 @@ public class Ruudukko {
         this.ruudukko = new Ruutu[leveys][korkeus];
         valmisteleRuudukko();
     }
-    
+       
+    /*
+    * Täyttää ruudukon Ruutu-luokan ilmentymillä.
+    */
     private void valmisteleRuudukko(){
         for(int i=0; i<this.korkeus; i++){
             for(int j=0; j<this.leveys; j++){
@@ -36,6 +39,10 @@ public class Ruudukko {
     
     //Yksittäisiin ruutuihin liittyvät metodit
     
+    
+    /*
+    * Tarkastaa ovatko x ja y koordinaatit sallituissa rajoissa. Tarkastetaan jokaisen ruutuja muokkaavan metodin alussa.
+    */
     private boolean sallittu(int x, int y){
         return x>=0 && x<leveys && y>=0 && y<korkeus;
     }
@@ -83,6 +90,10 @@ public class Ruudukko {
         this.ruudukko[x][y].merkitse(m);
     }
     
+    /*
+    * Laskee montako minaa ruudun viereisissä ruuduissa yhteensä on ja asettaa sen arvoksi kyseiselle ruudulle ruudun asetaViereisetMiinat-metodilla.
+    * (Ottaa huomioon mahdollisesti ruudussa itsessään olevan miinan.)
+    */
     private void laskeViereisetMiinat(int x, int y){
         if(!sallittu(x, y)){
             return;
@@ -107,6 +118,9 @@ public class Ruudukko {
         this.ruudukko[x][y].asetaViereisetMiinat(miinat);
     }
     
+    /*
+    * Laskee jokaisen ruudukon ruudun viereist miinat käyttäen ruudukon yksityistä laskeViereisetMiinat(x, y) metodia.
+    */
     public void laskeViereisetMiinat(){
         for(int i=0; i<this.korkeus; i++){
             for(int j=0; j<this.leveys; j++){
@@ -122,6 +136,10 @@ public class Ruudukko {
         this.ruudukko[x][y].asetaNakyva();
     }
     
+    /*
+    * Asettaa xy-koordinaateissa olevan ruudun näkyväksi ja mikäli kyseisen ruudun vieressä ei ole miinoja, kutsuu samaa metodia rekursiivisesti kaikille
+    * sen viereisille ruuduille. 
+    */
     public void asetaNakyvaJaKetjureaktio(int x, int y){
         if(!sallittu(x, y)){
             return;

@@ -84,6 +84,8 @@ public class Kayttoliittyma extends JFrame{
         return a;
     }    
         
+    
+    //Vielä copu-pastea
     public void paivitaRuudukko(){
         for(int i=0; i<this.miinaharava.getRuudukko().getKorkeus(); i++){
             for(int j=0; j<this.miinaharava.getRuudukko().getLeveys(); j++){
