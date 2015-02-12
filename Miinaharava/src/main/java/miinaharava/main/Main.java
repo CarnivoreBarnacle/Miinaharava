@@ -9,8 +9,8 @@ public class Main {
     public static void main(String[] args){
         final Miinaharava m = new Miinaharava(20, 20, 50);
         
-        m.getRuudukko().asetaNakyvaJaKetjureaktio(0, 0);
-        m.getRuudukko().asetaNakyvaJaKetjureaktio(19, 19);
+        //m.getRuudukko().asetaNakyvaJaKetjureaktio(0, 0);
+        //m.getRuudukko().asetaNakyvaJaKetjureaktio(19, 19);
         
         EventQueue.invokeLater(new Runnable() {
             @Override
