@@ -6,14 +6,12 @@ package miinaharava.logiikka;
 */
 
 public class Ruudukko {
-    private final int korkeus;
-    private final int leveys;
+    private final int koko;
     private final Ruutu[][] ruudukko;
     
-    public Ruudukko(int korkeus, int leveys){
-        this.korkeus = korkeus;
-        this.leveys = leveys;
-        this.ruudukko = new Ruutu[leveys][korkeus];
+    public Ruudukko(int koko){
+        this.koko = koko;
+        this.ruudukko = new Ruutu[koko][koko];
         valmisteleRuudukko();
     }
        
@@ -21,19 +19,15 @@ public class Ruudukko {
     * Täyttää ruudukon Ruutu-luokan ilmentymillä.
     */
     private void valmisteleRuudukko(){
-        for(int i=0; i<this.korkeus; i++){
-            for(int j=0; j<this.leveys; j++){
+        for(int i=0; i<this.koko; i++){
+            for(int j=0; j<this.koko; j++){
                 this.ruudukko[i][j] = new Ruutu();
             }
         }
     }
     
-    public int getKorkeus(){
-        return this.korkeus;
-    }
-    
-    public int getLeveys(){
-        return this.leveys;
+    public int getKoko(){
+        return this.koko;
     }
     
     
@@ -44,7 +38,7 @@ public class Ruudukko {
     * Tarkastaa ovatko x ja y koordinaatit sallituissa rajoissa. Tarkastetaan jokaisen ruutuja muokkaavan metodin alussa.
     */
     private boolean sallittu(int x, int y){
-        return x>=0 && x<leveys && y>=0 && y<korkeus;
+        return x>=0 && x<koko && y>=0 && y<koko;
     }
     
     public boolean onkoNakyva(int x, int y){
@@ -102,11 +96,11 @@ public class Ruudukko {
         
         //Ottaa huomioon mahdollisesti paikassa [x][y] olevan miinan
         for(int i=x-1; i<=x+1; i++){
-            if(i<0 || i>this.korkeus-1){
+            if(i<0 || i>this.koko-1){
                 continue;
             }
             for(int j=y-1; j<=y+1; j++){
-                if(j<0 || j>this.leveys-1){
+                if(j<0 || j>this.koko-1){
                     continue;
                 }
                 if(this.ruudukko[i][j].onkoMiina()){
@@ -122,8 +116,8 @@ public class Ruudukko {
     * Laskee jokaisen ruudukon ruudun viereist miinat käyttäen ruudukon yksityistä laskeViereisetMiinat(x, y) metodia.
     */
     public void laskeViereisetMiinat(){
-        for(int i=0; i<this.korkeus; i++){
-            for(int j=0; j<this.leveys; j++){
+        for(int i=0; i<this.koko; i++){
+            for(int j=0; j<this.koko; j++){
                 this.laskeViereisetMiinat(i, j);
             }
         }
@@ -152,11 +146,11 @@ public class Ruudukko {
         }
         
         for(int i=x-1; i<=x+1; i++){
-            if(i<0 || i>this.korkeus-1){
+            if(i<0 || i>this.koko-1){
                 continue;
             }
             for(int j=y-1; j<=y+1; j++){
-                if(j<0 || j>this.leveys-1){
+                if(j<0 || j>this.koko-1){
                     continue;
                 }
                 if(!this.ruudukko[i][j].onkoNakyva()){
@@ -165,8 +159,5 @@ public class Ruudukko {
             }
         }
     }
-    
-    public Ruutu getRuutu(int x, int y){
-        return this.ruudukko[x][y];
-    }
+
 }

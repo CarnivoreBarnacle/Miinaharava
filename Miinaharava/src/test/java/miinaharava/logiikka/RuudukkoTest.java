@@ -12,25 +12,26 @@ public class RuudukkoTest {
 
     @Test
     public void luokanLuominen(){
-        Ruudukko ruudukko = new Ruudukko(10, 10);
-        assertTrue(ruudukko.getKorkeus() == 10);
-        assertTrue(ruudukko.getLeveys() == 10);
+        Ruudukko ruudukko = new Ruudukko(10);
+        assertTrue(ruudukko.getKoko() == 10);
         assertTrue(!ruudukko.onkoMiina(0, 0));
     }
     
     @Test
     public void setterienTestaus(){
-        Ruudukko ruudukko = new Ruudukko(10, 10);
+        Ruudukko ruudukko = new Ruudukko(10);
         
         ruudukko.asetaNakyva(5, 2);
         assertTrue(ruudukko.onkoNakyva(5, 2));
         ruudukko.asetaMiina(0, 0);
         assertTrue(ruudukko.onkoMiina(0, 0));
+        ruudukko.merkitse(1, 1, true);
+        assertTrue(ruudukko.onkoMerkitty(1, 1));
     }
     
     @Test
     public void virheellisetArvot(){
-        Ruudukko ruudukko = new Ruudukko(10, 10);
+        Ruudukko ruudukko = new Ruudukko(10);
         //Kokeillaan mahdottomiaArvoja
         ruudukko.asetaNakyva(-1, 2);
         ruudukko.asetaNakyva(10, 10);
@@ -39,7 +40,7 @@ public class RuudukkoTest {
     
     @Test
     public void miinojenLaskenta1(){
-        Ruudukko ruudukko = new Ruudukko(10, 10);
+        Ruudukko ruudukko = new Ruudukko(10);
         
         ruudukko.asetaMiina(0, 1);
         ruudukko.laskeViereisetMiinat();
@@ -48,7 +49,7 @@ public class RuudukkoTest {
     
     @Test
     public void miinojenLaskenta2(){
-        Ruudukko ruudukko = new Ruudukko(10, 10);
+        Ruudukko ruudukko = new Ruudukko(10);
         
         ruudukko.asetaMiina(0, 1);
         ruudukko.asetaMiina(1, 0);
@@ -58,7 +59,7 @@ public class RuudukkoTest {
     
     @Test
     public void miinojenLaskenta3(){
-        Ruudukko ruudukko = new Ruudukko(10, 10);
+        Ruudukko ruudukko = new Ruudukko(10);
         
         ruudukko.asetaMiina(1, 2);
         ruudukko.asetaMiina(1, 3);
@@ -76,7 +77,7 @@ public class RuudukkoTest {
     
     @Test
     public void nakyvaKetjureaktio1(){
-        Ruudukko ruudukko = new Ruudukko(10, 10);
+        Ruudukko ruudukko = new Ruudukko(10);
         
         ruudukko.asetaNakyvaJaKetjureaktio(0, 0);
         assertTrue(ruudukko.onkoNakyva(0, 0));

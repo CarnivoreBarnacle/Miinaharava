@@ -7,3 +7,4 @@
 29.01. - 1h Käyttöliittymän ohjelmointi jatkuu
 05.02. - 3h Käyttöliittymää...
 11.02. - 4h Hiirikäyttöliittymä, javadocs logiikalle, sekvenssikaavioita
+20.02. - 8h käyttöliittymää, valikko, asetukset, päivitetty sekvenssikaaviot

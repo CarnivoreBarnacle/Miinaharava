@@ -11,12 +11,12 @@ public class Miinaharava {
     private int miinoja;
     private int pisteet;
     
-    public Miinaharava(int korkeus, int leveys, int miinoja){
-        if(miinoja > (korkeus*leveys)-10){
+    public Miinaharava(int koko, int miinoja){
+        if(miinoja > (koko*koko)-10){
             miinoja = 0;
         }
         
-        this.ruudukko = new Ruudukko(korkeus, leveys);
+        this.ruudukko = new Ruudukko(koko);
         this.miinoja = miinoja;
         this.pisteet = 0;
         this.arvoMiinat();
@@ -29,8 +29,8 @@ public class Miinaharava {
     private void arvoMiinat(){
         Random r = new Random();
         for(int i=0; i<this.miinoja; i++){
-            int x = r.nextInt(this.ruudukko.getKorkeus());
-            int y = r.nextInt(this.ruudukko.getLeveys());
+            int x = r.nextInt(this.ruudukko.getKoko());
+            int y = r.nextInt(this.ruudukko.getKoko());
             if(this.ruudukko.onkoMiina(x, y)){
                 i--;
             } else{
@@ -50,4 +50,5 @@ public class Miinaharava {
     public int getPisteet(){
         return this.pisteet;
     }
+    
 }
