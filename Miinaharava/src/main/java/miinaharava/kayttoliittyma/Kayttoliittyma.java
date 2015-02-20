@@ -7,9 +7,13 @@ import miinaharava.logiikka.Miinaharava;
 
 public class Kayttoliittyma extends JFrame{
     private Miinaharava miinaharava;
+    private int koko;
+    private int miinoja;
     
     public Kayttoliittyma(Miinaharava m){
         this.miinaharava = m;
+        this.koko = m.getRuudukko().getKoko();
+        this.miinoja = m.getMiinoja();
         
         valmisteleKayttoliityma();
     }
@@ -47,8 +51,8 @@ public class Kayttoliittyma extends JFrame{
         paivitaRuudukko();
     }
     
-    public void uusiPeli(int koko, int miinat){
-        this.miinaharava = new Miinaharava(koko, miinat);
+    public void uusiPeli(){
+        this.miinaharava = new Miinaharava(this.koko, this.miinoja);
         
         setSize((this.miinaharava.getRuudukko().getKoko()*20)+50, (this.miinaharava.getRuudukko().getKoko()*20)+80);
         
@@ -61,5 +65,10 @@ public class Kayttoliittyma extends JFrame{
     
     public Miinaharava getMiinaharava(){
         return this.miinaharava;
+    }
+    
+    public void asetukset(int koko, int miinoja){
+        this.koko = koko;
+        this.miinoja = miinoja;
     }
 }

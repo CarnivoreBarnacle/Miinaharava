@@ -21,7 +21,7 @@ public class Valikko extends JMenuBar{
         mi1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                kl.uusiPeli(40, 200);
+                kl.uusiPeli();
             }
         });
         

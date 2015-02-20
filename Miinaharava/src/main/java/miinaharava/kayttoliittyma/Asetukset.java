@@ -63,8 +63,8 @@ public class Asetukset extends JFrame{
                     info.setText("");
                 }
                 
-                
-                kl.uusiPeli(Integer.parseInt(koko.getText()), Integer.parseInt(miinoja.getText()));
+                kl.asetukset(kokoI, miinojaI);
+                kl.uusiPeli();
                 dispose();
             }
         });
