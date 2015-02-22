@@ -63,7 +63,7 @@ public class Asetukset extends JFrame{
                     info.setText("");
                 }
                 
-                kl.asetukset(kokoI, miinojaI);
+                kl.tallennaAsetukset(kokoI, miinojaI);
                 kl.uusiPeli();
                 dispose();
             }

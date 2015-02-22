@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class HiiriKuuntelija implements MouseListener{
-    private Kayttoliittyma kl;
+    private final Kayttoliittyma kl;
     
     public HiiriKuuntelija(Kayttoliittyma kl){
         this.kl = kl;

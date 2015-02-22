@@ -7,15 +7,30 @@ import miinaharava.logiikka.Miinaharava;
 
 public class Kayttoliittyma extends JFrame{
     private Miinaharava miinaharava;
+    private final HiiriKuuntelija hk;
+    private java.util.Timer t;
     private int koko;
     private int miinoja;
     
     public Kayttoliittyma(Miinaharava m){
         this.miinaharava = m;
+        this.hk = new HiiriKuuntelija(this);
         this.koko = m.getRuudukko().getKoko();
-        this.miinoja = m.getMiinoja();
+        this.miinoja = m.getMiinoja();      
+        this.t = new java.util.Timer();
         
         valmisteleKayttoliityma();
+        kaynnistaAjastin();
+    }
+    
+    private void kaynnistaAjastin(){       
+        this.t = new java.util.Timer();
+        this.t.scheduleAtFixedRate(new AjastinTehtava(this), 1000, 1000);
+    }
+    
+    private void pysaytaAjastin(){
+        this.t.cancel();
+        this.t.purge();
     }
     
     private void valmisteleKayttoliityma(){             
@@ -24,8 +39,8 @@ public class Kayttoliittyma extends JFrame{
         Valikko valikko = new Valikko(this);
         setJMenuBar(valikko);
         
-        pane.add(new PiirtoAlusta(this.miinaharava));
-        pane.addMouseListener(new HiiriKuuntelija(this));
+        pane.add(new PiirtoAlusta(this.getMiinaharava()));
+        pane.addMouseListener(this.hk);
         
         pack();
         
@@ -36,27 +51,46 @@ public class Kayttoliittyma extends JFrame{
     }
 
        
-    private void paivitaRuudukko(){   
+    public void paivita(){   
         repaint();
     }
     
     
-    public void ruutuKlikattuVasen(int x, int y){
+    public void ruutuKlikattuVasen(int x, int y){           
         this.miinaharava.getRuudukko().asetaNakyvaJaKetjureaktio(x, y);
-        paivitaRuudukko();
+        paivita();
+        
+        if(this.miinaharava.getRuudukko().onkoMiina(x, y)){
+            this.miinaharava.loppu();
+            peliLoppu();
+        }
+        
+        if(this.miinaharava.tarkastaVoitto()){
+            peliLoppu();
+        }
     }
     
-    public void ruutuKlikattuOikea(int x, int y){
+    public void ruutuKlikattuOikea(int x, int y){                
         this.miinaharava.getRuudukko().merkitse(x, y, !this.miinaharava.getRuudukko().onkoMerkitty(x, y));
-        paivitaRuudukko();
+        paivita();
+        
+        if(this.miinaharava.tarkastaVoitto()){
+            peliLoppu();
+        }
     }
     
     public void uusiPeli(){
+        peliLoppu();
+        
+        kaynnistaAjastin();
+        
+        Container pane = getContentPane();
+        pane.addMouseListener(this.hk);
+        
         this.miinaharava = new Miinaharava(this.koko, this.miinoja);
         
         setSize((this.miinaharava.getRuudukko().getKoko()*20)+50, (this.miinaharava.getRuudukko().getKoko()*20)+80);
-        
-        Container pane = this.getContentPane();
+
         pane.removeAll();
         pane.add(new PiirtoAlusta(this.miinaharava));
         
@@ -67,8 +101,14 @@ public class Kayttoliittyma extends JFrame{
         return this.miinaharava;
     }
     
-    public void asetukset(int koko, int miinoja){
+    public void tallennaAsetukset(int koko, int miinoja){
         this.koko = koko;
         this.miinoja = miinoja;
+    }
+    
+    public void peliLoppu(){
+        pysaytaAjastin();
+        Container pane = getContentPane();
+        pane.removeMouseListener(this.hk);
     }
 }
