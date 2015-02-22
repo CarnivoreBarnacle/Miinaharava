@@ -15,6 +15,10 @@ public class HiiriKuuntelija implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if(e.getX() < 20 || e.getY() < 20){
+            return;
+        }
+        
         if(e.getButton() == MouseEvent.BUTTON1){
            kl.ruutuKlikattuVasen((e.getX()-20)/20, (e.getY()-20)/20);
         } else if(e.getButton() == MouseEvent.BUTTON3){

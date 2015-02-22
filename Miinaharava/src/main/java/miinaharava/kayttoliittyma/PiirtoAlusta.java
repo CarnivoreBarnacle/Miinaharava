@@ -53,6 +53,8 @@ public class PiirtoAlusta extends JPanel{
         if(this.miinaharava.tarkastaVoitto()){
             g.setColor(Color.BLUE);
             g.drawString("VOITIT PELIN", 15, 15);
+            g.setColor(Color.BLACK);
+            g.drawString("P: " + this.miinaharava.getPisteet(), 100, 15);
         } else if(this.miinaharava.onkoLoppu()){
             g.setColor(Color.RED);
             g.drawString("HÄVISIT PELIN", 15, 15);

@@ -66,6 +66,7 @@ public class Miinaharava {
             }
         }
         
+        laskePisteet();
         this.loppu = true;
         return true;
     }
@@ -84,5 +85,12 @@ public class Miinaharava {
     
     public int getAika(){
         return this.aika;
+    }
+    
+    private void laskePisteet(){
+        int ruutujenMaara = this.ruudukko.getKoko()*this.ruudukko.getKoko();
+        int tyhjienMaara = ruutujenMaara - this.miinoja;
+        
+        this.pisteet =  ((this.miinoja*10000)-(tyhjienMaara*100)) - (this.aika*10);
     }
 }
