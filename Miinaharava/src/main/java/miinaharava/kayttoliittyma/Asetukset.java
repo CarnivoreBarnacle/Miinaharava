@@ -25,14 +25,14 @@ public class Asetukset extends JFrame{
         k.setEditable(false);
         final JTextField koko = new JTextField();
         koko.setText("" + this.kl.getMiinaharava().getRuudukko().getKoko());
-        koko.setToolTipText("välillä 5-50");
+        koko.setToolTipText("10-50");
         
         
         JTextField m = new JTextField("Miinoja:");
         m.setEditable(false);
         final JTextField miinoja = new JTextField();
         miinoja.setText("" + this.kl.getMiinaharava().getMiinoja());
-        miinoja.setToolTipText("välillä 10-[ruutujen määrä]/2");
+        miinoja.setToolTipText("10-puolet ruutujen määrästä");
         
         
         final JTextField info = new JTextField();
@@ -53,11 +53,11 @@ public class Asetukset extends JFrame{
                 int kokoI = Integer.parseInt(koko.getText());
                 int miinojaI = Integer.parseInt(miinoja.getText());
                 
-                if(kokoI < 5 || kokoI > 50){
-                    info.setText("Koon oltava välillä 5-50");
+                if(kokoI < 10 || kokoI > 50){
+                    info.setText("Koon oltava 10-50");
                     return;
                 } else if(miinojaI < 10 || miinojaI > (kokoI*kokoI)/2){
-                    info.setText("Miinoja oltava välillä 10-[ruutujen määrä]/2");
+                    info.setText("Miinoja oltava 10-" + ((Integer.parseInt(koko.getText())*Integer.parseInt(koko.getText()))/2));
                     return;
                 } else{
                     info.setText("");
