@@ -4,8 +4,8 @@ import java.util.Random;
 import miinaharava.ennatykset.Ennatys;
 
 
-/*
-*   Luokka sisältää yleisen pelilogiikan
+/**
+*   Luokka sisältää yleisen pelilogiikan.
 */
 public class Miinaharava {
     private final Ruudukko ruudukko;
@@ -15,10 +15,13 @@ public class Miinaharava {
     private int aika;
     private boolean loppu;
     
-    /*
+    /**
     *   Suorittaa myös miinojen arpomisen ja viereisten miinojen laskemisen.
     *   @see miinaharava.logiikka.Miinaharava#arvoMiinat()
     *   @see miinaharava.logiikka.Ruudukko#laskeViereisetMiinat()
+    *   @param nimi Pelaajan nimi
+    *   @param koko Ruudukon sivun pituus
+    *   @param miinoja Miinojen määrä
     */
     public Miinaharava(String nimi, int koko, int miinoja){
         if(miinoja > (koko*koko)-10){
@@ -35,7 +38,7 @@ public class Miinaharava {
         this.loppu = false;      
     }
        
-    /*
+    /**
     *   Arpoo miinoja-muuttujan verran miinoja ruudukkoon, käyttäen ruudukon onkoMiina- ja asetaMiina- metodeja.
     *   @see miinaharava.logiikka.Ruudukko#onkoMiina(int, int)
     *   @see miinaharava.logiikka.Ruudukko#arvoMiina(int, int)
@@ -65,7 +68,7 @@ public class Miinaharava {
         return this.pisteet;
     }
     
-    /*
+    /**
     *   Tarkastaa onko kaikki ruudut, joissa on miina merkittyjä ja kaikki ruudut joissa ei ole miinaa näkyviä.
     *   Mikäli näin on, suorittaa myös pisteidenlaskennan ja (mahdollisesti) tallentaa pisteet ennätyksiin ja asettaa miinaharavan loppu-arvon todeksi.
     *   @return Palauttaa onko peli voitettu vai ei
@@ -105,7 +108,7 @@ public class Miinaharava {
         return this.aika;
     }
     
-    /*
+    /**
     *   Laskee pelaajan pisteet kaavalla: (miinojen määrä)*1000 - (tyhjien ruutujen määrä)*100 - (aika)*10.
     *   Mikäli pisteet menenvät negatiivisiksi, ne asetetaan nollaan sen sijaan.
     */

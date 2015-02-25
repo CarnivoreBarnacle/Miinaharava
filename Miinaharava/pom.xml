@@ -42,9 +42,13 @@
 				<configuration>
 				<targetClasses>
 					<param>miinaharava.logiikka.*</param>
+					<param>miinaharava.ajastin.*</param>
+					<param>miinaharava.ennatykset.*</param>
 				</targetClasses>
 				<targetTests>
 					<param>miinaharava.logiikka.*</param>
+					<param>miinaharava.ajastin.*</param>
+					<param>miinaharava.ennatykset.*</param>
 				</targetTests>
 			</configuration>
 			</plugin>

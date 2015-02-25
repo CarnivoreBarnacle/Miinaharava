@@ -1,21 +1,23 @@
 package miinaharava.ennatykset;
 
+import java.awt.EventQueue;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.*;
+import miinaharava.kayttoliittyma.Virheilmoitus;
 
 
-/*
+/**
 *   Luokan tehtävä on käsitellä tiedostoa joka sisältää ennätykset.
 */
 public class Ennatys {
-    private String[] rivit;
+    private final String[] rivit;
     
     public Ennatys(){
         this.rivit = new String[9];
     }
     
-    /*
+    /**
     *   Tallentaa tiedostoon ennätyksen mikäli pelaajan pisteet ovat korkeammat kuin jollain aikaisemmalla ennätyksellä.
     *   @param nimi Pelaajan nimi
     *   @param pisteet Pelaajan pisteet
@@ -31,7 +33,7 @@ public class Ennatys {
         tallennaTiedostoon(tiedosto);
     }
     
-    /*
+    /**
     *   Lukee tiedoston "ennatykset.s" sisällön rivi kerrallaan rivit[] - taulukkoon käyttäen lueTiedosto-metodia ja palauttaa saadun taulukon.
     *   @return Palauttaa taulukon jossa nykyiset ennätykset ovat
     *   @see miinaharava.ennatykset.Ennatys#lueTiedosto(File)
@@ -43,8 +45,11 @@ public class Ennatys {
         return this.rivit;
     }
     
-    /*
-    *   Lukee tiedoston "ennatykset.s" sisällön rivi kerrallaan rivit[] - taulukkoon.
+    /**
+    *   Lukee tiedoston "ennatykset.s" sisällön rivi kerrallaan rivit[] - taulukkoon. Jos tiedosto oli tyhjä täytetään se tiedostosta "ennatyksetDefault.s"
+    *   Mikäli tiedostoa ei löytyny, kutsuu kaynnistaVirheIlmoitus-metodia.
+    *   @param tiedosto luettava tiedosto
+    *   @see miinaharava.ennatykset.Ennatys#kaynnistaVirheIlmoitus()
     */
     private void lueTiedosto(File tiedosto){
         Scanner s;
@@ -52,6 +57,7 @@ public class Ennatys {
         try{
             s = new Scanner(tiedosto);
         }catch(Exception e){
+            kaynnistaVirheilmoitus();
             return;
         }
         
@@ -64,9 +70,14 @@ public class Ennatys {
         }
         
        s.close();
+       
+       if(this.rivit[8] == null){
+            lueTiedosto(new File("ennatyksetDefault.s"));
+            tallennaTiedostoon(tiedosto);
+       }
     }
     
-    /*
+    /**
     *   Korvaa ennätyksen rivit[] taulukkoon mikäli pelaajan pisteet ovat korkeammat kuin jollain aikaisemmalla ennätyksellä.
     *   @param nimi Pelaajan nimi
     *   @param pisteet Pelaajan pisteet
@@ -76,8 +87,11 @@ public class Ennatys {
         for(int i=0; i<this.rivit.length; i++){
             String[] rivi = this.rivit[i].split(":");
             
-            if(pisteet > Integer.parseInt(rivi[2])){
-                this.rivit[i] = i + ":" + nimi + ":" + pisteet;
+            if(pisteet > Integer.parseInt(rivi[1])){
+                this.rivit[i] = nimi + ":" + pisteet;
+                
+                String e = rivi[0] + ":" + rivi[1];
+                loputYhdellaEteenpain(i+1, e);
                 return true;
             }
         }
@@ -85,8 +99,19 @@ public class Ennatys {
         return false;
     }
     
-    /*
-    *   Tallentaa rivit-taulukon sisällön tiedostoon "ennatykset.s"
+    private void loputYhdellaEteenpain(int alkuindeksi, String ensimmainen){
+        String edellinen = ensimmainen;
+        for(int i=alkuindeksi; i<this.rivit.length; i++){
+            String vali = this.rivit[i];
+            this.rivit[i] = edellinen;
+            edellinen = vali;
+        }
+    }
+    
+    /**
+    *   Tallentaa rivit-taulukon sisällön tiedostoon "ennatykset.s".
+    *   Mikäli tiedostoa ei löytyny, kutsuu kaynnistaVirheIlmoitus-metodia.
+    *   @see miinaharava.ennatykset.Ennatys#kaynnistaVirheIlmoitus()
     */
     private void tallennaTiedostoon(File tiedosto){
         FileWriter fw;
@@ -97,6 +122,22 @@ public class Ennatys {
                 fw.write(s + "\n");
             }
             fw.close();
-        }catch(Exception e){}
+        }catch(Exception e){
+            kaynnistaVirheilmoitus();
+        }
+    }
+    
+    /**
+    *   Käynnistää virheilmoituksen ilmoittamaan tiedoston puuttumisesta.
+    *   @see miinaharava.kayttoliittyma.Virheilmoitus
+    */
+    private void kaynnistaVirheilmoitus(){
+        EventQueue.invokeLater(new Runnable(){
+                @Override
+                public void run(){
+                    Virheilmoitus v = new Virheilmoitus("Tiedostoa \"ennatykset.s\" ei löytynyt.");
+                    v.setVisible(true);
+                }
+            });
     }
 }

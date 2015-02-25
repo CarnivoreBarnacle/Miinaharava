@@ -7,8 +7,8 @@ import miinaharava.logiikka.Miinaharava;
 public class Main {
     
     public static void main(String[] args){
-        final Miinaharava m = new Miinaharava("default", 20, 50);
-
+        final Miinaharava m = new Miinaharava("PELAAJA", 20, 50);
+        
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

@@ -11,10 +11,20 @@ public class RuudukkoTest {
     }
 
     @Test
-    public void luokanLuominen(){
+    public void luokanLuominen1(){
         Ruudukko ruudukko = new Ruudukko(10);
         assertTrue(ruudukko.getKoko() == 10);
         assertTrue(!ruudukko.onkoMiina(0, 0));
+        assertTrue(!ruudukko.onkoMerkitty(0, 0));
+        assertTrue(ruudukko.getViereisetMiinat(0, 0) == 0);
+    }
+    
+    @Test
+    public void luokanLuominen2(){
+        Ruudukko ruudukko = new Ruudukko(10);
+        assertTrue(!ruudukko.onkoMiina(-1, -1));
+        assertTrue(!ruudukko.onkoMerkitty(-1, -1));
+        assertTrue(ruudukko.getViereisetMiinat(-1, -1) == -1);
     }
     
     @Test
@@ -84,5 +94,24 @@ public class RuudukkoTest {
         assertTrue(ruudukko.onkoNakyva(0, 9));
         assertTrue(ruudukko.onkoNakyva(9, 0));
         assertTrue(ruudukko.onkoNakyva(9, 9));
+    }
+    
+    @Test
+    public void viereistenMiinojenLaskenta1(){
+        Ruudukko ruudukko = new Ruudukko(10);
+        
+        ruudukko.asetaMiina(1, 1);    
+        ruudukko.laskeViereisetMiinat();
+        assertTrue(ruudukko.getViereisetMiinat(0, 0) == 1);
+    }
+    
+    public void viereistenMiinojenLaskenta2(){
+        Ruudukko ruudukko = new Ruudukko(10);
+        
+        ruudukko.asetaMiina(1, 1);   
+        ruudukko.asetaMiina(0, 1);
+        ruudukko.asetaMiina(1, 0);
+        ruudukko.laskeViereisetMiinat();
+        assertTrue(ruudukko.getViereisetMiinat(0, 0) == 3);
     }
 }

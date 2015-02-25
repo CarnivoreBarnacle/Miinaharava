@@ -1,13 +1,14 @@
 package miinaharava.kayttoliittyma;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import javax.swing.*;
-import miinaharava.logiikka.Miinaharava;
 
+/**
+*   Luokka sisältää asetukset-ikkunan käyttöliittymän.
+*/
 public class Asetukset extends JFrame{
-    private Kayttoliittyma kl;
+    private final Kayttoliittyma kl;
     
     public Asetukset(Kayttoliittyma kl){
         this.kl = kl;

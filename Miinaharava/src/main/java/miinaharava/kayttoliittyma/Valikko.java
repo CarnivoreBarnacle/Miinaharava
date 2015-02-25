@@ -4,8 +4,11 @@ import java.awt.EventQueue;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+*   Luokka sisältää pelin pää-ikkunan menu-valikon.
+*/
 public class Valikko extends JMenuBar{
-    private Kayttoliittyma kl;
+    private final Kayttoliittyma kl;
     
     public Valikko(Kayttoliittyma kl){
         this.kl = kl;

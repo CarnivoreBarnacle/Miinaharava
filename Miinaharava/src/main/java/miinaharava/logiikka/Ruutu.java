@@ -1,6 +1,6 @@
 package miinaharava.logiikka;
 
-/*
+/**
  * Luokka sisältää yksittäisen ruudun tilan (esim. näkyvyys, onko siinä miina), sekä sen viereisten miinojen määrän.
  * Metodit yksinkertaisia get/set metodeja.
 */

@@ -3,6 +3,9 @@ package miinaharava.kayttoliittyma;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+*   Luokka sisältää hiirikuuntelijan, joka ottaa vastaan pelaajan syötteen ja laittaa sen eteenpäin käyttöliittymälle.
+*/
 public class HiiriKuuntelija implements MouseListener{
     private final Kayttoliittyma kl;
     
@@ -12,7 +15,12 @@ public class HiiriKuuntelija implements MouseListener{
         
     @Override
     public void mouseClicked(MouseEvent e) {}
-
+    
+    /**
+    *   Ilmoittaa käyttöliittymälle että ruutua on klikattu joko vasemmalla tai oikealla painikkeella.
+    *   @see miinaharava.kayttoliittyma.Kayttoliittyma#ruutuKlikattuVasen(int, int)
+    *   @see miinaharava.kayttoliittyma.Kayttoliittyma#ruutuKlikattuOikea(int, int)
+    */
     @Override
     public void mousePressed(MouseEvent e) {
         if(e.getX() < 20 || e.getY() < 20){

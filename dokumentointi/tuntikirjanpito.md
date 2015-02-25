@@ -10,3 +10,4 @@
 20.02. - 8h käyttöliittymää, valikko, asetukset, päivitetty sekvenssikaaviot
 22.02. - 1h Ajastin, käyttöliitymän säätöä, pisteytys
 25.02. - 3h Ennätykset, javadocsien päivittämistä
+25.02. - 3h Viimeiset testit, pit-raportti, cobertura, javadocs

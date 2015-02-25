@@ -4,8 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 import miinaharava.logiikka.Miinaharava;
 
+/**
+*   Luokan tehtävä on piirtää logiikan Ruudukko javan Graphics-kirjastoa käyttäen.
+*/
 public class PiirtoAlusta extends JPanel{
-    private Miinaharava miinaharava;
+    private final Miinaharava miinaharava;
     
     public PiirtoAlusta(Miinaharava mh){
         this.miinaharava = mh;

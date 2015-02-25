@@ -5,9 +5,12 @@ import javax.swing.*;
 import miinaharava.ajastin.Ajastin;
 import miinaharava.logiikka.Miinaharava;
 
+/**
+*   Luokka sisältää pelin pääkäyttöliittymän.
+*/
 public class Kayttoliittyma extends JFrame{
-    private Miinaharava miinaharava;
     private final HiiriKuuntelija hk;
+    private Miinaharava miinaharava;
     private Ajastin ajastin;
     private int koko;
     private int miinoja;
@@ -22,11 +25,19 @@ public class Kayttoliittyma extends JFrame{
         kaynnistaAjastin();
     }
     
+    /**
+    *   Luo uuden ajastimen ja käynnistää sen.
+    *   @see miinaharava.ajastin.Ajastin#kaynnistaAjastin(Kayttoliittyma)
+    */
     private void kaynnistaAjastin(){
         this.ajastin = new Ajastin();
-        this.ajastin.KaynnistaAjastin(this);
+        this.ajastin.kaynnistaAjastin(this);
     }
     
+    /**
+    *   Pysayttaa ajastimen.
+    *   @see miinaharava.ajastin.Ajastin#pysaytaAjastin()
+    */
     private void pysaytaAjastin(){
         this.ajastin.pysaytaAjastin();
     }
@@ -48,12 +59,23 @@ public class Kayttoliittyma extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-       
+    /**
+    *   Paivittaa ikkunan.
+    */   
     public void paivita(){   
         repaint();
     }
     
-    
+    /**
+    *   Asettaa parametrien koordiinaattien ruudun näkyväksi ja päivittää ikkunan. Lopettaa pelin mikäli kyseisessä ruudussa on miina.
+    *   Tarkastaa myös onko pelaaja voittanut siirron jälkeen.
+    *   @param x Ruudun x-koordinaatti
+    *   @param y Ruudun y-koordinaatti
+    *   @see miinaharava.logiikka.Ruudukko#asetaNakyvaJaKetjureaktio(int, int)
+    *   @see miinaharava.kayttoliittyma.Kayttoliittyma#paivita()
+    *   @see miinaharava.logiikka.Miinaharava#tarkastaVoitto()
+    *   @see miinaharava.kayttoliittyma.Kayttoliittyma#peliLoppu()
+    */
     public void ruutuKlikattuVasen(int x, int y){           
         this.miinaharava.getRuudukko().asetaNakyvaJaKetjureaktio(x, y);
         paivita();
@@ -68,6 +90,15 @@ public class Kayttoliittyma extends JFrame{
         }
     }
     
+    /**
+    *   Merkistee parametrien koordiinaattien ruudun ja päivittää ikkunan.
+    *   Tarkastaa myös onko pelaaja voittanut siirron jälkeen.
+    *   @param x Ruudun x-koordinaatti
+    *   @param y Ruudun y-koordinaatti
+    *   @see miinaharava.kayttoliittyma.Kayttoliittyma#paivita()
+    *   @see miinaharava.logiikka.Miinaharava#tarkastaVoitto()
+    *   @see miinaharava.kayttoliittyma.Kayttoliittyma#peliLoppu()
+    */
     public void ruutuKlikattuOikea(int x, int y){                
         this.miinaharava.getRuudukko().merkitse(x, y, !this.miinaharava.getRuudukko().onkoMerkitty(x, y));
         paivita();
@@ -77,6 +108,9 @@ public class Kayttoliittyma extends JFrame{
         }
     }
     
+    /**
+    *   Aloittaa uuden pelin.
+    */
     public void uusiPeli(){
         peliLoppu();
         
@@ -100,12 +134,21 @@ public class Kayttoliittyma extends JFrame{
         return this.miinaharava;
     }
     
+    /**
+    *   Tallentaa parametreinä saadut asetukset.
+    *   @param nimi Pelaajan nimi
+    *   @param koko Ruudukon sivun pituus
+    *   @param miinoja Miinojen määrä
+    */
     public void tallennaAsetukset(String nimi, int koko, int miinoja){
         this.miinaharava.asetaNimi(nimi);
         this.koko = koko;
         this.miinoja = miinoja;
     }
     
+    /**
+    *   Lopettaa pelin; pysäyttää ajastimen ja deaktivoi hiirikuuntelijan.
+    */
     public void peliLoppu(){
         pysaytaAjastin();
         Container pane = getContentPane();

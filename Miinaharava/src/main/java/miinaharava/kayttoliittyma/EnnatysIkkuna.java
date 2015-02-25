@@ -4,6 +4,9 @@ import java.awt.*;
 import javax.swing.*;
 import miinaharava.ennatykset.Ennatys;
 
+/**
+*   Luokka sisältää ikkunan, jossa ennäykset näytetään pelaajalle.
+*/
 public class EnnatysIkkuna extends JFrame{
     
     public EnnatysIkkuna(){
@@ -29,10 +32,10 @@ public class EnnatysIkkuna extends JFrame{
         for(String s:ennatykset){
             String[] jaettu = s.split(":");
 
-            String tulos = jaettu[0] + ". " + jaettu[1];
+            String tulos = jaettu[0];
             
             JTextField uusi = new JTextField(tulos);
-            JTextField pisteet = new JTextField(jaettu[2]);            
+            JTextField pisteet = new JTextField(jaettu[1]);            
             uusi.setEditable(false);
             pisteet.setEditable(false);
             pane.add(uusi);
