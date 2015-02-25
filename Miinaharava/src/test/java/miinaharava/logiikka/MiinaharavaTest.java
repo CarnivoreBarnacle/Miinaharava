@@ -12,21 +12,21 @@ public class MiinaharavaTest {
     
     @Test
     public void luonti1(){
-        Miinaharava m = new Miinaharava(10, 1);
+        Miinaharava m = new Miinaharava("default", 10, 1);
         
         assertTrue(testaaMontakoMinaa(m.getRuudukko()) == 1);
     }
     
     @Test
     public void luonti2(){
-        Miinaharava m = new Miinaharava(10, 5);
+        Miinaharava m = new Miinaharava("default", 10, 5);
         
         assertTrue(testaaMontakoMinaa(m.getRuudukko()) == 5);
     }
     
     @Test
     public void virheellinenLuonti(){
-        Miinaharava m = new Miinaharava(5, 30);
+        Miinaharava m = new Miinaharava("default", 5, 30);
         assertTrue(m.getMiinoja() == 0);
         assertTrue(testaaMontakoMinaa(m.getRuudukko()) == 0);
     }

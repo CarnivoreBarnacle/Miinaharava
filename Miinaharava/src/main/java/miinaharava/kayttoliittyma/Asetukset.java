@@ -21,6 +21,21 @@ public class Asetukset extends JFrame{
         GridLayout layout = new GridLayout(5,2);
         pane.setLayout(layout);
         
+        luoKomponentit(pane);
+        
+        setTitle("Asetukset");
+        setSize(300, 300);
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+    
+    private void luoKomponentit(Container pane){
+        JTextField n = new JTextField("Nimi:");
+        n.setEditable(false);
+        final JTextField nimi = new JTextField();
+        nimi.setText(this.kl.getMiinaharava().getNimi());
+        nimi.setToolTipText("nimi jota käytetään ennätyksiä tallennettaessa");
+        
         JTextField k = new JTextField("Koko:");
         k.setEditable(false);
         final JTextField koko = new JTextField();
@@ -39,6 +54,9 @@ public class Asetukset extends JFrame{
         info.setEditable(false);
         
         
+        pane.add(n);
+        pane.add(nimi);
+        
         pane.add(k);        
         pane.add(koko);
 
@@ -50,8 +68,17 @@ public class Asetukset extends JFrame{
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
+                String nimiI = nimi.getText();
                 int kokoI = Integer.parseInt(koko.getText());
                 int miinojaI = Integer.parseInt(miinoja.getText());
+                
+                if(nimiI.equals("")){
+                    info.setText("Nimi ei voi olla tyhjä.");
+                    return;
+                } else if(nimiI.length() > 12){
+                    info.setText("Nimi voi olla korkeintaan 12 merkkiä pitkä.");
+                    return;
+                }
                 
                 if(kokoI < 10 || kokoI > 50){
                     info.setText("Koon oltava 10-50");
@@ -63,7 +90,7 @@ public class Asetukset extends JFrame{
                     info.setText("");
                 }
                 
-                kl.tallennaAsetukset(kokoI, miinojaI);
+                kl.tallennaAsetukset(nimiI, kokoI, miinojaI);
                 kl.uusiPeli();
                 dispose();
             }
@@ -72,10 +99,5 @@ public class Asetukset extends JFrame{
         pane.add(ok);
         
         pane.add(info);
-        
-        setTitle("Asetukset");
-        setSize(300, 300);
-        setResizable(false);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 }

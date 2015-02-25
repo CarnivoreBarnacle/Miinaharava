@@ -8,4 +8,5 @@
 05.02. - 3h Käyttöliittymää...
 11.02. - 4h Hiirikäyttöliittymä, javadocs logiikalle, sekvenssikaavioita
 20.02. - 8h käyttöliittymää, valikko, asetukset, päivitetty sekvenssikaaviot
-22.02. - 1h Ajastin, käyttöliitymän säätöä
+22.02. - 1h Ajastin, käyttöliitymän säätöä, pisteytys
+25.02. - 3h Ennätykset, javadocsien päivittämistä

@@ -16,19 +16,35 @@ public class Valikko extends JMenuBar{
         JMenu m = new JMenu("Valikko"); 
         
         //Uusi Peli
-        JMenuItem mi1 = new JMenuItem("Uusi peli");
-        mi1.setToolTipText("Aloita uusi peli");
-        mi1.addActionListener(new ActionListener() {
+        JMenuItem up = new JMenuItem("Uusi peli");
+        up.setToolTipText("Aloita uusi peli");
+        up.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
                 kl.uusiPeli();
             }
         });
         
+        //Ennätykset
+        JMenuItem en = new JMenuItem("Ennätykset");
+        en.setToolTipText("Ennätykset");
+        en.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EventQueue.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        EnnatysIkkuna e = new EnnatysIkkuna();
+                        e.setVisible(true);
+                    }
+                });
+            }
+        });
+        
         //Asetukset
-        JMenuItem mi3 = new JMenuItem("Asetukset");
-        mi3.setToolTipText("Asetukset");
-        mi3.addActionListener(new ActionListener() {
+        JMenuItem as = new JMenuItem("Asetukset");
+        as.setToolTipText("Asetukset");
+        as.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
                 EventQueue.invokeLater(new Runnable() {
@@ -42,18 +58,19 @@ public class Valikko extends JMenuBar{
         });
         
         //Lopeta
-        JMenuItem mi2 = new JMenuItem("Lopeta");
-        mi2.setToolTipText("Sulje peli");
-        mi2.addActionListener(new ActionListener() {
+        JMenuItem lo = new JMenuItem("Lopeta");
+        lo.setToolTipText("Sulje peli");
+        lo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
                 System.exit(0);
             }
         });
         
-        m.add(mi1);
-        m.add(mi3);
-        m.add(mi2);
+        m.add(up);
+        m.add(en);
+        m.add(as);
+        m.add(lo);
         
         this.add(m);
     }

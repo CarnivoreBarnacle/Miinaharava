@@ -1,14 +1,18 @@
 package miinaharava.logiikka;
 
 /*
- * Luokka sisältää ruuduista koostuvan taulukon, logiikka sen toiminnasta (esim. ruudun viereisten miinojen laskeminen) ja yksittäisten ruutujen
- * muokkaamiseen soveltuvia metodeja.
+*   Luokka sisältää ruuduista koostuvan taulukon, logiikka sen toiminnasta (esim. ruudun viereisten miinojen laskeminen) ja yksittäisten ruutujen
+*   muokkaamiseen soveltuvia metodeja.
 */
 
 public class Ruudukko {
     private final int koko;
     private final Ruutu[][] ruudukko;
     
+    /*
+    *   Kutsuu myös luokan valmisteleRuudukko-metodia
+    *   @see miinaharava.logiikka.Ruudukko#valmisteleRuudukko()
+    */
     public Ruudukko(int koko){
         this.koko = koko;
         this.ruudukko = new Ruutu[koko][koko];
@@ -16,7 +20,7 @@ public class Ruudukko {
     }
        
     /*
-    * Täyttää ruudukon Ruutu-luokan ilmentymillä.
+    *   Täyttää ruudukon Ruutu-luokan ilmentymillä.
     */
     private void valmisteleRuudukko(){
         for(int i=0; i<this.koko; i++){
@@ -35,7 +39,7 @@ public class Ruudukko {
     
     
     /*
-    * Tarkastaa ovatko x ja y koordinaatit sallituissa rajoissa. Tarkastetaan jokaisen ruutuja muokkaavan metodin alussa.
+    *   Tarkastaa ovatko x ja y koordinaatit sallituissa rajoissa. Tarkastetaan jokaisen ruutuja muokkaavan metodin alussa.
     */
     private boolean sallittu(int x, int y){
         return x>=0 && x<koko && y>=0 && y<koko;
@@ -85,8 +89,8 @@ public class Ruudukko {
     }
     
     /*
-    * Laskee montako minaa ruudun viereisissä ruuduissa yhteensä on ja asettaa sen arvoksi kyseiselle ruudulle ruudun asetaViereisetMiinat-metodilla.
-    * (Ottaa huomioon mahdollisesti ruudussa itsessään olevan miinan.)
+    *   Laskee montako minaa ruudun viereisissä ruuduissa yhteensä on ja asettaa sen arvoksi kyseiselle ruudulle ruudun asetaViereisetMiinat-metodilla.
+    *   (Ottaa huomioon mahdollisesti ruudussa itsessään olevan miinan.)
     */
     private void laskeViereisetMiinat(int x, int y){
         if(!sallittu(x, y)){
@@ -113,7 +117,8 @@ public class Ruudukko {
     }
     
     /*
-    * Laskee jokaisen ruudukon ruudun viereist miinat käyttäen ruudukon yksityistä laskeViereisetMiinat(x, y) metodia.
+    *   Laskee jokaisen ruudukon ruudun viereist miinat käyttäen ruudukon yksityistä laskeViereisetMiinat(x, y) metodia.
+    *   @see miinaharava.logiikka.Ruudukko#laskeViereisetMiinat(int, int)
     */
     public void laskeViereisetMiinat(){
         for(int i=0; i<this.koko; i++){
@@ -131,8 +136,8 @@ public class Ruudukko {
     }
     
     /*
-    * Asettaa xy-koordinaateissa olevan ruudun näkyväksi ja mikäli kyseisen ruudun vieressä ei ole miinoja, kutsuu samaa metodia rekursiivisesti kaikille
-    * sen viereisille ruuduille. 
+    *   Asettaa xy-koordinaateissa olevan ruudun näkyväksi ja mikäli kyseisen ruudun vieressä ei ole miinoja, kutsuu samaa metodia rekursiivisesti kaikille
+    *   sen viereisille ruuduille.
     */
     public void asetaNakyvaJaKetjureaktio(int x, int y){
         if(!sallittu(x, y)){

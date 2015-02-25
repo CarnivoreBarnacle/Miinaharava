@@ -1,24 +1,31 @@
 package miinaharava.logiikka;
 
 import java.util.Random;
-import java.util.Timer;
+import miinaharava.ennatykset.Ennatys;
+
 
 /*
- * Luokka sisältää yleisen pelilogiikan
+*   Luokka sisältää yleisen pelilogiikan
 */
-
 public class Miinaharava {
-    private Ruudukko ruudukko;
-    private int miinoja;
+    private final Ruudukko ruudukko;
+    private final int miinoja;
+    private String nimi;
     private int pisteet;
     private int aika;
     private boolean loppu;
     
-    public Miinaharava(int koko, int miinoja){
+    /*
+    *   Suorittaa myös miinojen arpomisen ja viereisten miinojen laskemisen.
+    *   @see miinaharava.logiikka.Miinaharava#arvoMiinat()
+    *   @see miinaharava.logiikka.Ruudukko#laskeViereisetMiinat()
+    */
+    public Miinaharava(String nimi, int koko, int miinoja){
         if(miinoja > (koko*koko)-10){
             miinoja = 0;
         }
         
+        this.nimi = nimi;
         this.ruudukko = new Ruudukko(koko);
         this.miinoja = miinoja;
         this.pisteet = 0;
@@ -29,7 +36,9 @@ public class Miinaharava {
     }
        
     /*
-    * Arpoo miinoja-muuttujan verran miinoja ruudukkoon
+    *   Arpoo miinoja-muuttujan verran miinoja ruudukkoon, käyttäen ruudukon onkoMiina- ja asetaMiina- metodeja.
+    *   @see miinaharava.logiikka.Ruudukko#onkoMiina(int, int)
+    *   @see miinaharava.logiikka.Ruudukko#arvoMiina(int, int)
     */
     private void arvoMiinat(){
         Random r = new Random();
@@ -56,7 +65,13 @@ public class Miinaharava {
         return this.pisteet;
     }
     
-    
+    /*
+    *   Tarkastaa onko kaikki ruudut, joissa on miina merkittyjä ja kaikki ruudut joissa ei ole miinaa näkyviä.
+    *   Mikäli näin on, suorittaa myös pisteidenlaskennan ja (mahdollisesti) tallentaa pisteet ennätyksiin ja asettaa miinaharavan loppu-arvon todeksi.
+    *   @return Palauttaa onko peli voitettu vai ei
+    *   @see miinaharava.logiikka.Miinaharava#laskePisteet()
+    *   @see miinaharava.ennatykset.Ennatys#tallennaEnnatys(String, int)
+    */
     public boolean tarkastaVoitto(){
         for(int i=0; i<this.ruudukko.getKoko(); i++){
             for(int j=0; j<this.ruudukko.getKoko(); j++){
@@ -65,8 +80,11 @@ public class Miinaharava {
                 }
             }
         }
-        
+                
         laskePisteet();
+        if(!this.loppu){
+            new Ennatys().tallennaEnnatys(this.nimi, this.pisteet);
+        }
         this.loppu = true;
         return true;
     }
@@ -87,10 +105,25 @@ public class Miinaharava {
         return this.aika;
     }
     
+    /*
+    *   Laskee pelaajan pisteet kaavalla: (miinojen määrä)*1000 - (tyhjien ruutujen määrä)*100 - (aika)*10.
+    *   Mikäli pisteet menenvät negatiivisiksi, ne asetetaan nollaan sen sijaan.
+    */
     private void laskePisteet(){
         int ruutujenMaara = this.ruudukko.getKoko()*this.ruudukko.getKoko();
         int tyhjienMaara = ruutujenMaara - this.miinoja;
         
         this.pisteet =  ((this.miinoja*10000)-(tyhjienMaara*100)) - (this.aika*10);
+        if(this.pisteet < 0){
+            this.pisteet = 0;
+        }
+    }
+    
+    public void asetaNimi(String nimi){
+        this.nimi = nimi;
+    }
+    
+    public String getNimi(){
+        return this.nimi;
     }
 }

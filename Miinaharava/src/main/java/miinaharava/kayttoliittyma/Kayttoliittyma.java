@@ -1,14 +1,14 @@
-
 package miinaharava.kayttoliittyma;
 
 import java.awt.*;
 import javax.swing.*;
+import miinaharava.ajastin.Ajastin;
 import miinaharava.logiikka.Miinaharava;
 
 public class Kayttoliittyma extends JFrame{
     private Miinaharava miinaharava;
     private final HiiriKuuntelija hk;
-    private java.util.Timer t;
+    private Ajastin ajastin;
     private int koko;
     private int miinoja;
     
@@ -17,20 +17,18 @@ public class Kayttoliittyma extends JFrame{
         this.hk = new HiiriKuuntelija(this);
         this.koko = m.getRuudukko().getKoko();
         this.miinoja = m.getMiinoja();      
-        this.t = new java.util.Timer();
-        
+               
         valmisteleKayttoliityma();
         kaynnistaAjastin();
     }
     
-    private void kaynnistaAjastin(){       
-        this.t = new java.util.Timer();
-        this.t.scheduleAtFixedRate(new AjastinTehtava(this), 1000, 1000);
+    private void kaynnistaAjastin(){
+        this.ajastin = new Ajastin();
+        this.ajastin.KaynnistaAjastin(this);
     }
     
     private void pysaytaAjastin(){
-        this.t.cancel();
-        this.t.purge();
+        this.ajastin.pysaytaAjastin();
     }
     
     private void valmisteleKayttoliityma(){             
@@ -86,8 +84,9 @@ public class Kayttoliittyma extends JFrame{
         
         Container pane = getContentPane();
         pane.addMouseListener(this.hk);
-        
-        this.miinaharava = new Miinaharava(this.koko, this.miinoja);
+                
+        String edellinenNimi = this.miinaharava.getNimi();
+        this.miinaharava = new Miinaharava(edellinenNimi, this.koko, this.miinoja);
         
         setSize((this.miinaharava.getRuudukko().getKoko()*20)+50, (this.miinaharava.getRuudukko().getKoko()*20)+80);
 
@@ -101,7 +100,8 @@ public class Kayttoliittyma extends JFrame{
         return this.miinaharava;
     }
     
-    public void tallennaAsetukset(int koko, int miinoja){
+    public void tallennaAsetukset(String nimi, int koko, int miinoja){
+        this.miinaharava.asetaNimi(nimi);
         this.koko = koko;
         this.miinoja = miinoja;
     }
