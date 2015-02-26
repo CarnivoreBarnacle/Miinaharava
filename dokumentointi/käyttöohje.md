@@ -1,9 +1,11 @@
 #Käyttöohje
 
 **Peli**
+
 Miinaharavan tavoitteena on merkitä jokainen ruutu, jossa on miina ja avata jokainen ruutu, jossa miinaa ei ole. Mikäli pelaaja avaa ruudun, jossa on miina, häviää hän pelin. Avatuissa ruuduissa näkyvä numero kertoo, montako miinaa kyseisen ruudun viereisissä ruuduissa on yhteensä. Mikäli pelaaja avaa ruudun, jonka vieressä ei ole yhtään miinaa käynnistyy ketjureaktio, joka avaa jokaisen sen vieressä olevan ruudun ja jatkaa mikäli niidenkään vieressä ei ole yhtään miinaa. Pisteet määräytyvät ajan, ruudukon koon ja miinojen määrän perusteella.
 
 **Syöte**
+
 Ruutu avataan painamalla hiiren vasenta painiketta ja merkitään painamalle hiiren oikeaa painiketta.
 
 **Valikko**
