@@ -7,13 +7,13 @@ Miinaharavan tavoitteena on merkit‰ jokainen ruutu, jossa on miina ja avata joka
 Ruutu avataan painamalla hiiren vasenta painiketta ja merkit‰‰n painamalle hiiren oikeaa painiketta.
 
 **Valikko**
-Uusi Peli - Aloitaa uuden pelin samoilla asetuksilla.
-Enn‰tykset - N‰ytt‰‰ piste-enn‰tykset.
-Asetukset - ks. Asetukset
-Lopeta Peli - Sulkee ikkunan. Pelin voi lopettaa myˆs ikkunan nurkassa n‰kyv‰st‰ ruksista.
+*Uusi Peli - Aloitaa uuden pelin samoilla asetuksilla.
+*Enn‰tykset - N‰ytt‰‰ piste-enn‰tykset.
+*Asetukset - ks. Asetukset
+*Lopeta Peli - Sulkee ikkunan. Pelin voi lopettaa myˆs ikkunan nurkassa n‰kyv‰st‰ ruksista.
 
 **Asetukset**
-Nimi - Pelaajan nimi, jota k‰ytet‰‰n enn‰tysten tallentamiseen. Nimen tulee olla v‰hint‰‰n yksi(1) ja korkeintaan kaksitoista(12) merkki‰ pitk‰.
-Koko - Peliruudukon sivun pituus. Tulee olla v‰lill‰ 10-50.
-Miinoja - Miinojen m‰‰r‰. Tulee olla v‰lill‰ 10-puolet ruutujen m‰‰r‰st‰.
-OK - Tallentaa nykyiset asetukset ja aloittaa uuden pelin. Voit palata k‰ynniss‰ olevaan peliin Asetukset-ikkunan kulmassa olevasta ruksista.
+*Nimi - Pelaajan nimi, jota k‰ytet‰‰n enn‰tysten tallentamiseen. Nimen tulee olla v‰hint‰‰n yksi(1) ja korkeintaan kaksitoista(12) merkki‰ pitk‰.
+*Koko - Peliruudukon sivun pituus. Tulee olla v‰lill‰ 10-50.
+*Miinoja - Miinojen m‰‰r‰. Tulee olla v‰lill‰ 10-puolet ruutujen m‰‰r‰st‰.
+*OK - Tallentaa nykyiset asetukset ja aloittaa uuden pelin. Voit palata k‰ynniss‰ olevaan peliin Asetukset-ikkunan kulmassa olevasta ruksista.
