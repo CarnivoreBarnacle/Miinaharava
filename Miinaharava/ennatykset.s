@@ -1,9 +1,9 @@
+default0:1000000
+default0:1000000
 default:500000
 default:200000
 default:150000
 default:100000
-default:50000
-default:20000
-default:10000
-default:5000
-default:1000
+default:91000
+default:91000
+default:90980
