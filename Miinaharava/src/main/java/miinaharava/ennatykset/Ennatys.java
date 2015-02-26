@@ -29,7 +29,7 @@ public class Ennatys {
         if(!korvaaEnnatys(nimi, pisteet)){
             return;
         }    
-        
+                
         tallennaTiedostoon(tiedosto);
     }
     
@@ -49,7 +49,7 @@ public class Ennatys {
     *   Lukee tiedoston "ennatykset.s" sisällön rivi kerrallaan rivit[] - taulukkoon. Jos tiedosto oli tyhjä täytetään se tiedostosta "ennatyksetDefault.s"
     *   Mikäli tiedostoa ei löytyny, kutsuu kaynnistaVirheIlmoitus-metodia.
     *   @param tiedosto luettava tiedosto
-    *   @see miinaharava.ennatykset.Ennatys#kaynnistaVirheIlmoitus()
+    *   @see miinaharava.ennatykset.Ennatys#kaynnistaVirheIlmoitus(String)
     */
     private void lueTiedosto(File tiedosto){
         Scanner s;
@@ -57,7 +57,7 @@ public class Ennatys {
         try{
             s = new Scanner(tiedosto);
         }catch(Exception e){
-            kaynnistaVirheilmoitus();
+            kaynnistaVirheilmoitus(tiedosto.getName());
             return;
         }
         
@@ -111,7 +111,7 @@ public class Ennatys {
     /**
     *   Tallentaa rivit-taulukon sisällön tiedostoon "ennatykset.s".
     *   Mikäli tiedostoa ei löytyny, kutsuu kaynnistaVirheIlmoitus-metodia.
-    *   @see miinaharava.ennatykset.Ennatys#kaynnistaVirheIlmoitus()
+    *   @see miinaharava.ennatykset.Ennatys#kaynnistaVirheIlmoitus(String)
     */
     private void tallennaTiedostoon(File tiedosto){
         FileWriter fw;
@@ -123,19 +123,20 @@ public class Ennatys {
             }
             fw.close();
         }catch(Exception e){
-            kaynnistaVirheilmoitus();
+            kaynnistaVirheilmoitus(tiedosto.getName());
         }
     }
     
     /**
     *   Käynnistää virheilmoituksen ilmoittamaan tiedoston puuttumisesta.
+    *   @param tiedostonNimi puuttuvan tiedoston nimi
     *   @see miinaharava.kayttoliittyma.Virheilmoitus
     */
-    private void kaynnistaVirheilmoitus(){
+    private void kaynnistaVirheilmoitus(final String tiedostoNimi){
         EventQueue.invokeLater(new Runnable(){
                 @Override
                 public void run(){
-                    Virheilmoitus v = new Virheilmoitus("Tiedostoa \"ennatykset.s\" ei löytynyt.");
+                    Virheilmoitus v = new Virheilmoitus("Tiedostoa \"" +  tiedostoNimi +  "\" ei löytynyt.");
                     v.setVisible(true);
                 }
             });
